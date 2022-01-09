@@ -1,5 +1,5 @@
 [webserver]
-bind_addr = ":8080"
+bind_addr = ":8000"
 
 [store]
 database_url = "user=postgres dbname=mytest host=localhost password=xxx sslmode=disable"
