@@ -1,0 +1,5 @@
+[webserver]
+bind_addr = ":8080"
+
+[store]
+database_url = "user=postgres dbname=mytest host=ec2-3-145-1-160.us-east-2.compute.amazonaws.com password=xxx sslmode=disable"
