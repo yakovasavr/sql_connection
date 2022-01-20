@@ -26,7 +26,7 @@ func (s *WEBServer) Get(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *WEBServer) Start() error {
-	connStr := "user=postgres dbname=mytest host=localhost password=xxx sslmode=disable"
+	connStr := "user=postgres dbname=mytest host=xx password=xxxx sslmode=disable"
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
 		return err
