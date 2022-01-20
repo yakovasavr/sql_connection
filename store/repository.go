@@ -13,10 +13,10 @@ type Repo struct {
 }
 
 type BookRepository interface {
-	GetBook(ctx context.Context) (models.Book, error)
+	GetLastBook(ctx context.Context) (models.Book, error)
 }
 
-func (repo Repo) GetBook(ctx context.Context) (models.Book, error) {
+func (repo Repo) GetLastBook(ctx context.Context) (models.Book, error) {
 	var book models.Book
 
 	rows, err := repo.Conn.Query("select title, author from myschema.books")
@@ -26,7 +26,14 @@ func (repo Repo) GetBook(ctx context.Context) (models.Book, error) {
 
 	defer rows.Close()
 
-	err = rows.Scan(&book.Title, &book.Author)
+	for rows.Next() {
+		err := rows.Scan(&book.Title, &book.Author)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+
+	err = rows.Err()
 	if err != nil {
 		log.Fatal(err)
 	}

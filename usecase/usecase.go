@@ -13,12 +13,12 @@ type BookUsecase struct {
 }
 
 type BookService interface {
-	GetBook(ctx context.Context) (models.Book, error)
+	GetLastBook(ctx context.Context) (models.Book, error)
 }
 
-func (s BookUsecase) GetBook(ctx context.Context) (models.Book, error) {
+func (s BookUsecase) GetLastBook(ctx context.Context) (models.Book, error) {
 
-	book, err := s.BookRepo.GetBook(ctx)
+	book, err := s.BookRepo.GetLastBook(ctx)
 
 	if err != nil {
 		log.Fatal(err)
